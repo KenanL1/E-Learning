@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Edumate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'index' %}" class="navbar-brand">Edumate</a></li>
+                <li><a href="{%url 'admin:index' %}" class="navbar-link">Admin</a></li>
+
+                <!-- if the user is authenticated -->
+                {% if user.is_authenticated %}
+                <!--  % url 'logout' %} points to project urls.py logout-->
+                <li><a href="{% url 'logout' %}" class="navbar-link">Logout</a></li>
+
+                <!-- if the user was not authenticated, points to app urls.py  -->
+                {% else %}
+                <li><a href="{%url 'edumateapp:register'%}" class="navbar-link">Register</a></li>
+                <li><a href="{% url 'edumateapp:user_login' %}" class="navbar-link">Login</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block body_block %}
+        <!-- Anything outside of this will be inherited if you extend! -->
+        {% endblock %}
+    </div>
+    <h1>base page...</h1>
+
+    <script src="" async defer></script>
+</body>
+
+</html>
